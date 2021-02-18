@@ -86,5 +86,15 @@ fs.writeFileSync('imdbBBDD.json',imdbBBDD)
 
 let instanciIMDB:IMDB = JSON.parse(fs.readFileSync('imdbBBDD.json'))
 
-console.log(instanciIMDB)
+//console.log(instanciIMDB)
+
+
+
+
+//Probar métodos de clase IMDB
+
+bdPeliculas.escribirEnFicheroJSON('bdPeliculas.json')
+
+console.log(bdPeliculas.obtenerInstanciaIMDB('bdPeliculas.json'))
+
 
