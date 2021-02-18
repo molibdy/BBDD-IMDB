@@ -1,4 +1,4 @@
-import {Professional} from ('claseProfessional')
+import {Professional} from './claseProfessional'
 
 export class Movie{
     public title:string;
