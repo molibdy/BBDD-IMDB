@@ -81,6 +81,10 @@ let bdPeliculas:IMDB = new IMDB([ironMan,starWars1,hollywood,abreOjos])
 
 let imdbBBDD = JSON.stringify(bdPeliculas)
 
-var fs = require('fs');
+const fs = require('fs');
 fs.writeFileSync('imdbBBDD.json',imdbBBDD)
+
+let instanciIMDB:IMDB = JSON.parse(fs.readFileSync('imdbBBDD.json'))
+
+console.log(instanciIMDB)
 
