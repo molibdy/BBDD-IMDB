@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import {Professional} from './claseProfessional'
+=======
+import {Professional} from './claseProfessional';
+>>>>>>> Moli2
 
 export class Movie{
     public title:string;
