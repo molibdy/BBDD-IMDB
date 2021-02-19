@@ -76,17 +76,17 @@ abreOjos.print()
 //Create object IMDB
 
 let bdPeliculas:IMDB = new IMDB([ironMan,starWars1,hollywood,abreOjos])
-//console.log(bdPeliculas);
+console.log(bdPeliculas);
  
-
-let imdbBBDD = JSON.stringify(bdPeliculas)
-
+//Crear archivo Json a partir del objeto IMDB:
 const fs = require('fs');
-fs.writeFileSync('imdbBBDD.json',imdbBBDD)
 
-let instanciIMDB:IMDB = JSON.parse(fs.readFileSync('imdbBBDD.json'))
+fs.writeFileSync('imdbBBDD.json',JSON.stringify(bdPeliculas))
 
-//console.log(instanciIMDB)
+//Crear objeto IMDB a partir del archivo Json:
+let instanciJSON=JSON.parse(fs.readFileSync('imdbBBDD.json'));
+let instanciIMDB:IMDB = new IMDB(instanciJSON.peliculas)
+console.log(instanciIMDB)
 
 
 
@@ -97,4 +97,38 @@ bdPeliculas.escribirEnFicheroJSON('bdPeliculas.json')
 
 console.log(bdPeliculas.obtenerInstanciaIMDB('bdPeliculas.json'))
 
+
+
+
+//Pedir input del user por consola de forma síncrona:
+
+
+
+
+//Pedir input del user por consola de forma asíncrona
+
+
+const readline= require('readline');
+
+const rl = readline.createInterface({
+    input:process.stdin,
+    output:process.stdout
+})
+
+let jasonIMDB:IMDB= bdPeliculas.obtenerInstanciaIMDB('imdbBBDD.json')
+
+    rl.question('Title of the movie:',function (title:string){
+        rl.question('Release year:', function(releaseYear:string){
+            rl.question('Nationality:',function(nationality:string){
+                rl.question('Genre:', function(genre:string){
+                    let peli =new Movie(title,parseInt(releaseYear),nationality,genre)
+                    console.log(peli)
+                    jasonIMDB.peliculas.push(peli)
+                    jasonIMDB.escribirEnFicheroJSON('imdbBBDD.json');
+                    console.log(jasonIMDB)
+                    rl.close();
+                })
+            })
+        })
+    })
 
