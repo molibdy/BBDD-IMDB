@@ -101,31 +101,43 @@ console.log(bdPeliculas.obtenerInstanciaIMDB('bdPeliculas.json'))
 
 
 //Pedir input del user por consola de forma síncrona:
+const readlineSync = require ('readline-sync')
+
+let title:string= readlineSync.question('Title of the movie:')
+let releaseYear:number=parseInt(readlineSync.question('Year of release:'))
+let nationality:string=readlineSync.question('Nationality:')
+let genre:string=readlineSync.question('Genre:')
+
+let peli =new Movie(title,releaseYear,nationality,genre)
+console.log(peli)
+
+//Incluir la nueva peli en el JSON:
+let jasonIMDB:IMDB= bdPeliculas.obtenerInstanciaIMDB('imdbBBDD.json')
+jasonIMDB.peliculas.push(peli)
+jasonIMDB.escribirEnFicheroJSON('imdbBBDD.json');
+console.log(jasonIMDB)
 
 
 
 
 //Pedir input del user por consola de forma asíncrona
-
-
 const readline= require('readline');
-
 const rl = readline.createInterface({
     input:process.stdin,
     output:process.stdout
 })
 
-let jasonIMDB:IMDB= bdPeliculas.obtenerInstanciaIMDB('imdbBBDD.json')
+let jasonIMDB2:IMDB= bdPeliculas.obtenerInstanciaIMDB('imdbBBDD.json')
 
-    rl.question('Title of the movie:',function (title:string){
-        rl.question('Release year:', function(releaseYear:string){
-            rl.question('Nationality:',function(nationality:string){
-                rl.question('Genre:', function(genre:string){
-                    let peli =new Movie(title,parseInt(releaseYear),nationality,genre)
-                    console.log(peli)
-                    jasonIMDB.peliculas.push(peli)
-                    jasonIMDB.escribirEnFicheroJSON('imdbBBDD.json');
-                    console.log(jasonIMDB)
+    rl.question('Title of the movie:',function (title2:string){
+        rl.question('Release year:', function(releaseYear2:string){
+            rl.question('Nationality:',function(nationality2:string){
+                rl.question('Genre:', function(genre2:string){
+                    let peli2 =new Movie(title2,parseInt(releaseYear2),nationality2,genre2)
+                    console.log(peli2)
+                    jasonIMDB2.peliculas.push(peli2)
+                    jasonIMDB2.escribirEnFicheroJSON('imdbBBDD2.json');
+                    console.log(jasonIMDB2)
                     rl.close();
                 })
             })
