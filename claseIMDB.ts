@@ -17,7 +17,9 @@ export class IMDB
 
     public obtenerInstanciaIMDB(nombreFichero:string):IMDB{
         let InstanciaIMDB:IMDB=JSON.parse(fs.readFileSync(nombreFichero));
-        return InstanciaIMDB;
+        let newIMDB = new IMDB(InstanciaIMDB.peliculas)
+        return newIMDB; 
+
     }
 
 }
